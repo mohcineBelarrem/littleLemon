@@ -17,6 +17,7 @@
 		B4BA3A2E2B3DDF2700A56D6A /* MarkaziText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4BA3A2A2B3DDF2700A56D6A /* MarkaziText-Medium.ttf */; };
 		B4BA3A2F2B3DDF2700A56D6A /* MarkaziText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4BA3A2B2B3DDF2700A56D6A /* MarkaziText-Bold.ttf */; };
 		B4BA3A302B3DDF2700A56D6A /* MarkaziText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4BA3A2C2B3DDF2700A56D6A /* MarkaziText-Regular.ttf */; };
+		B4BA3A342B3E18B400A56D6A /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A332B3E18B400A56D6A /* Color+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B4BA3A2B2B3DDF2700A56D6A /* MarkaziText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MarkaziText-Bold.ttf"; path = "../../../../../Downloads/Markazi_Text/static/MarkaziText-Bold.ttf"; sourceTree = "<group>"; };
 		B4BA3A2C2B3DDF2700A56D6A /* MarkaziText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MarkaziText-Regular.ttf"; path = "../../../../../Downloads/Markazi_Text/static/MarkaziText-Regular.ttf"; sourceTree = "<group>"; };
 		B4BA3A312B3DDF6B00A56D6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B4BA3A332B3E18B400A56D6A /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				B4BA3A312B3DDF6B00A56D6A /* Info.plist */,
 				B4907D0B2B3CB81200154125 /* LittleLemonApp.swift */,
 				B4BA3A262B3D9FC500A56D6A /* OnboardingViewModel.swift */,
+				B4BA3A322B3E189400A56D6A /* Utils */,
 				B4BA3A232B3D9E5400A56D6A /* Views */,
 				B4907D0F2B3CB81400154125 /* Assets.xcassets */,
 				B4BA3A282B3DDF0F00A56D6A /* fonts */,
@@ -101,6 +104,14 @@
 				B4BA3A292B3DDF2700A56D6A /* MarkaziText-SemiBold.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		B4BA3A322B3E189400A56D6A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B4BA3A332B3E18B400A56D6A /* Color+Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4BA3A342B3E18B400A56D6A /* Color+Extensions.swift in Sources */,
 				B4BA3A252B3D9F9B00A56D6A /* OnboardingView.swift in Sources */,
 				B4907D0E2B3CB81200154125 /* ContentView.swift in Sources */,
 				B4907D0C2B3CB81200154125 /* LittleLemonApp.swift in Sources */,

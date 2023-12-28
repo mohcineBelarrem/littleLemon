@@ -89,10 +89,3 @@ struct OnboardingView_Previews: PreviewProvider {
         OnboardingView()
     }
 }
-
-
-extension Color {
-    static var primaryColor: Color {
-        return Color(red: 73.0/255, green: 94.0/255, blue: 87.0/255)
-    }
-}
