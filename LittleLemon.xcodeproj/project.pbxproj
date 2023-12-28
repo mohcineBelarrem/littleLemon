@@ -19,6 +19,8 @@
 		B4BA3A342B3E18B400A56D6A /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A332B3E18B400A56D6A /* Color+Extensions.swift */; };
 		B4BA3A362B3E1E1100A56D6A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A352B3E1E1100A56D6A /* HomeView.swift */; };
 		B4BA3A382B3E1E6800A56D6A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A372B3E1E6800A56D6A /* MenuView.swift */; };
+		B4BA3A3B2B3E221400A56D6A /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A3A2B3E221400A56D6A /* MenuItem.swift */; };
+		B4BA3A3D2B3E222A00A56D6A /* MenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A3C2B3E222A00A56D6A /* MenuList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		B4BA3A332B3E18B400A56D6A /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		B4BA3A352B3E1E1100A56D6A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B4BA3A372B3E1E6800A56D6A /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		B4BA3A3A2B3E221400A56D6A /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		B4BA3A3C2B3E222A00A56D6A /* MenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 				B4BA3A312B3DDF6B00A56D6A /* Info.plist */,
 				B4907D0B2B3CB81200154125 /* LittleLemonApp.swift */,
 				B4BA3A262B3D9FC500A56D6A /* OnboardingViewModel.swift */,
+				B4BA3A392B3E21EB00A56D6A /* Model */,
 				B4BA3A322B3E189400A56D6A /* Utils */,
 				B4BA3A232B3D9E5400A56D6A /* Views */,
 				B4907D0F2B3CB81400154125 /* Assets.xcassets */,
@@ -115,6 +120,15 @@
 				B4BA3A332B3E18B400A56D6A /* Color+Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B4BA3A392B3E21EB00A56D6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B4BA3A3A2B3E221400A56D6A /* MenuItem.swift */,
+				B4BA3A3C2B3E222A00A56D6A /* MenuList.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,7 +205,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4BA3A3B2B3E221400A56D6A /* MenuItem.swift in Sources */,
 				B4BA3A382B3E1E6800A56D6A /* MenuView.swift in Sources */,
+				B4BA3A3D2B3E222A00A56D6A /* MenuList.swift in Sources */,
 				B4BA3A342B3E18B400A56D6A /* Color+Extensions.swift in Sources */,
 				B4BA3A252B3D9F9B00A56D6A /* OnboardingView.swift in Sources */,
 				B4BA3A362B3E1E1100A56D6A /* HomeView.swift in Sources */,
