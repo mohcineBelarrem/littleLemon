@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct MenuView: View {
+    @ObservedObject var viewModel = MenuViewModel()
+    
     var body: some View {
-        VStack() {
-            Text("Menu")
+        NavigationView {
+            List {
+                ForEach(viewModel.menuItems) { menuItem in
+                    Text(menuItem.title)
+                }
+            }
+        }
+        .task {
+           await viewModel.reload()
         }
     }
 }

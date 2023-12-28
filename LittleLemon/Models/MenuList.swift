@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MenuList: Decodable {
+struct MenuList: Codable {
     let items: [MenuItem]
     
     enum CodingKeys: String, CodingKey {

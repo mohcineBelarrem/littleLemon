@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum MenuItemCategory: String {
+enum MenuItemCategory: String, Codable {
     case starters
     case mains
     case desserts
 }
 
-struct MenuItem: Identifiable, Decodable {
+struct MenuItem: Identifiable, Codable {
     let id: UUID
     let title: String
     let price: String
