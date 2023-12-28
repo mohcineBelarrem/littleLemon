@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B4907D0C2B3CB81200154125 /* LittleLemonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4907D0B2B3CB81200154125 /* LittleLemonApp.swift */; };
-		B4907D0E2B3CB81200154125 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4907D0D2B3CB81200154125 /* ContentView.swift */; };
 		B4907D102B3CB81400154125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4907D0F2B3CB81400154125 /* Assets.xcassets */; };
 		B4907D132B3CB81400154125 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4907D122B3CB81400154125 /* Preview Assets.xcassets */; };
 		B4BA3A252B3D9F9B00A56D6A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A242B3D9F9B00A56D6A /* OnboardingView.swift */; };
@@ -18,12 +17,13 @@
 		B4BA3A2F2B3DDF2700A56D6A /* MarkaziText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4BA3A2B2B3DDF2700A56D6A /* MarkaziText-Bold.ttf */; };
 		B4BA3A302B3DDF2700A56D6A /* MarkaziText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4BA3A2C2B3DDF2700A56D6A /* MarkaziText-Regular.ttf */; };
 		B4BA3A342B3E18B400A56D6A /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A332B3E18B400A56D6A /* Color+Extensions.swift */; };
+		B4BA3A362B3E1E1100A56D6A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A352B3E1E1100A56D6A /* HomeView.swift */; };
+		B4BA3A382B3E1E6800A56D6A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA3A372B3E1E6800A56D6A /* MenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B4907D082B3CB81200154125 /* LittleLemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleLemon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4907D0B2B3CB81200154125 /* LittleLemonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonApp.swift; sourceTree = "<group>"; };
-		B4907D0D2B3CB81200154125 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B4907D0F2B3CB81400154125 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4907D122B3CB81400154125 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B4BA3A242B3D9F9B00A56D6A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -34,6 +34,8 @@
 		B4BA3A2C2B3DDF2700A56D6A /* MarkaziText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MarkaziText-Regular.ttf"; path = "../../../../../Downloads/Markazi_Text/static/MarkaziText-Regular.ttf"; sourceTree = "<group>"; };
 		B4BA3A312B3DDF6B00A56D6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B4BA3A332B3E18B400A56D6A /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		B4BA3A352B3E1E1100A56D6A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B4BA3A372B3E1E6800A56D6A /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +91,8 @@
 		B4BA3A232B3D9E5400A56D6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B4907D0D2B3CB81200154125 /* ContentView.swift */,
+				B4BA3A352B3E1E1100A56D6A /* HomeView.swift */,
+				B4BA3A372B3E1E6800A56D6A /* MenuView.swift */,
 				B4BA3A242B3D9F9B00A56D6A /* OnboardingView.swift */,
 			);
 			path = Views;
@@ -188,9 +191,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4BA3A382B3E1E6800A56D6A /* MenuView.swift in Sources */,
 				B4BA3A342B3E18B400A56D6A /* Color+Extensions.swift in Sources */,
 				B4BA3A252B3D9F9B00A56D6A /* OnboardingView.swift in Sources */,
-				B4907D0E2B3CB81200154125 /* ContentView.swift in Sources */,
+				B4BA3A362B3E1E1100A56D6A /* HomeView.swift in Sources */,
 				B4907D0C2B3CB81200154125 /* LittleLemonApp.swift in Sources */,
 				B4BA3A272B3D9FC500A56D6A /* OnboardingViewModel.swift in Sources */,
 			);

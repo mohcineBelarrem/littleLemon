@@ -13,7 +13,7 @@ struct LittleLemonApp: App {
     var body: some Scene {
         WindowGroup {
             if isLoggedIn {
-                ContentView()
+                HomeView()
             } else {
                 OnboardingView()
             }
