@@ -6,14 +6,14 @@
 //
 
 import Foundation
+import CoreData
 
 @MainActor
 class MenuViewModel: ObservableObject {
     
     @Published var menuItems = [MenuItem]()
         
-//    func reload(_ coreDataContext:NSManagedObjectContext) async {
-    func reload() async {
+    func reload(_ coreDataContext:NSManagedObjectContext) async {
         guard let url = URL(string: "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json") else {
             return
         }
@@ -25,8 +25,8 @@ class MenuViewModel: ObservableObject {
             menuItems = fullMenu.items
             
             // populate Core Data
-            //Dish.deleteAll(coreDataContext)
-            //Dish.createDishesFrom(menuItems:menuItems, coreDataContext)
+            Dish.deleteAll(coreDataContext)
+            Dish.createDishesFrom(menuItems:menuItems, coreDataContext)
         }
         catch {
             print(error.localizedDescription)

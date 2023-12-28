@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     var body: some View {
         TabView() {
             MenuView()
+                .environment(\.managedObjectContext, viewContext)
                     .tabItem {
                         Label("Menu", systemImage: "list.dash")
                     }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var viewModel = MenuViewModel()
     
     var body: some View {
@@ -19,7 +20,7 @@ struct MenuView: View {
             }
         }
         .task {
-           await viewModel.reload()
+           await viewModel.reload(viewContext)
         }
     }
 }
@@ -27,5 +28,6 @@ struct MenuView: View {
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
+            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }

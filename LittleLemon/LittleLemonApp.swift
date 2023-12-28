@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct LittleLemonApp: App {
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
             if isLoggedIn {
                 HomeView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
                 OnboardingView()
             }
