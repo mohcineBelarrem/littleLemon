@@ -25,7 +25,7 @@ struct MenuView: View {
                     
                     List {
                         ForEach(dishes) { dish in
-                            Text(dish.title ?? "")
+                            DishView(dish: dish)
                         }
                     }
                 }

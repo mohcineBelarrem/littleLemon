@@ -26,4 +26,20 @@ extension Font {
     static func markaziMedium(_ size: CGFloat) -> Font {
         return Font.custom("MarkaziText-Medium", size: size)
     }
+    
+    static func karlaMedium(_ size: CGFloat) -> Font {
+        return Font.custom("Karla-Medium", size: size)
+    }
+    
+    static func karlaRegular(_ size: CGFloat) -> Font {
+        return Font.custom("Karla-Regular", size: size)
+    }
+    
+    static func karlaBold(_ size: CGFloat) -> Font {
+        return Font.custom("Karla-Bold", size: size)
+    }
+    
+    static func karlaSemiBold(_ size: CGFloat) -> Font {
+        return Font.custom("Karla-SemiBold", size: size)
+    }
 }
