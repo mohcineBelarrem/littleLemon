@@ -11,10 +11,21 @@ import CoreData
 @MainActor
 class MenuViewModel: ObservableObject {
     
-    @Published var menuItems = [MenuItem]()
+    private let stringURL = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json"
+    
+    @Published private var menuItems = [MenuItem]()
+    
+    var predicate: NSPredicate {
+        return NSPredicate(value: true)
+    }
+    
+    var sortDescriptors: [NSSortDescriptor] {
+        return [NSSortDescriptor(key: "title", ascending: true)]
+    }
         
     func reload(_ coreDataContext:NSManagedObjectContext) async {
-        guard let url = URL(string: "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json") else {
+        //TODO: Implement fetchdata if needed
+        guard let url = URL(string: stringURL) else {
             return
         }
         let urlSession = URLSession.shared

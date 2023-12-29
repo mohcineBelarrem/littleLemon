@@ -13,11 +13,16 @@ struct MenuView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.menuItems) { menuItem in
-                    Text(menuItem.title)
+            FetchedObjects(predicate: viewModel.predicate,
+                           sortDescriptors: viewModel.sortDescriptors) { (dishes : [Dish]) in
+                
+                List {
+                    ForEach(dishes) { dish in
+                        Text(dish.title ?? "")
+                    }
                 }
             }
+            
         }
         .task {
            await viewModel.reload(viewContext)
@@ -28,6 +33,7 @@ struct MenuView: View {
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
-            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+            .environment(\.managedObjectContext,
+                          PersistenceController.shared.container.viewContext)
     }
 }

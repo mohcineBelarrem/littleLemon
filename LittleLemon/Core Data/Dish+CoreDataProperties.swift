@@ -27,6 +27,20 @@ extension Dish {
         return request
     }
     
+    static func all( _ context:NSManagedObjectContext) -> [Dish] {
+        let request = Dish.request()
+        
+        do {
+            guard let results = try context.fetch(request) as? [Dish], results.count > 0 else {
+                return []
+            }
+            return results
+        } catch (let error){
+            print(error.localizedDescription)
+            return []
+        }
+    }
+    
     static func with(name: String,
                      _ context:NSManagedObjectContext) -> Dish? {
         let request = Dish.request()
