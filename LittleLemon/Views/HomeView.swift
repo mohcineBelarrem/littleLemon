@@ -21,6 +21,7 @@ struct HomeView: View {
                     Label("Profile", systemImage: "person.fill")
                 }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

@@ -21,8 +21,9 @@ class UserProfileViewModel: ObservableObject {
         return UserDefaults.standard.string(forKey: Constants.email.rawValue) ?? ""
     }
     
-    func logout() {
+    func logout(completion: () -> ()) {
         UserDefaults.standard.set(false, forKey: Constants.isLoggedIn.rawValue)
+        completion()
     }
     
 }

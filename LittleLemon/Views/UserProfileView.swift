@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     @ObservedObject private var viewModel = UserProfileViewModel()
+    @Environment(\.presentationMode) var presentation
     var body: some View {
         NavigationStack {
             List {
@@ -31,7 +32,9 @@ struct UserProfileView: View {
                     HStack(alignment: .center) {
                         Spacer()
                         Button {
-                            viewModel.logout()
+                            viewModel.logout() {
+                                self.presentation.wrappedValue.dismiss()
+                            }
                         } label: {
                             Text("Log out")
                                 .font(.markaziMedium(25))

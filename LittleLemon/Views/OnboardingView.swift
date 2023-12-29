@@ -7,13 +7,15 @@
 
 import SwiftUI
 
+enum Field: Hashable {
+    case firstName
+    case lastName
+    case email
+}
+
 struct OnboardingView: View {
     
-    enum Field: Hashable {
-        case firstName
-        case lastName
-        case email
-    }
+    @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject private var viewModel = OnboardingViewModel()
     @State private var firstName = ""
@@ -25,45 +27,55 @@ struct OnboardingView: View {
     @State private var showingAlert = false
     @State private var alertMessage = ""
     
+    @AppStorage(Constants.isLoggedIn.rawValue) var isLoggedIn: Bool = false
+    
     var body: some View {
-        VStack() {
-            
-            Form {
-                Section() {
-                    TextField("First name", text: $firstName)
-                        .focused($focusedField, equals: .firstName)
-                        .submitLabel(.next)
-                        .onSubmit {
-                            focusedField = .lastName
-                        }
+        NavigationView() {
+            VStack() {
+                
+                NavigationLink(isActive: $isLoggedIn) {
+                    HomeView()
+                        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                } label: {
+                    EmptyView()
+                }
+
+                Form {
+                    Section() {
+                        TextField("First name", text: $firstName)
+                            .focused($focusedField, equals: .firstName)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                focusedField = .lastName
+                            }
+                    }
+                    
+                    Section() {
+                        TextField("Last name", text: $lastName)
+                            .focused($focusedField, equals: .lastName)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                focusedField = .email
+                            }
+                    }
+                    
+                    
+                    Section() {
+                        TextField("Email", text: $email)
+                            .focused($focusedField, equals: .email)
+                            .submitLabel(.done)
+                            .autocapitalization(.none)
+                            .onSubmit {
+                                print("submitting")
+                            }
+                    }
+                    
+                }
+                .scrollContentBackground(.hidden)
+                .alert(alertMessage, isPresented: $showingAlert) {
+                    Button("OK", role: .cancel) { }
                 }
                 
-                Section() {
-                    TextField("Last name", text: $lastName)
-                        .focused($focusedField, equals: .lastName)
-                        .submitLabel(.next)
-                        .onSubmit {
-                            focusedField = .email
-                        }
-                }
-                
-                
-                Section() {
-                    TextField("Email", text: $email)
-                        .focused($focusedField, equals: .email)
-                        .submitLabel(.done)
-                        .autocapitalization(.none)
-                        .onSubmit {
-                            print("submitting")
-                        }
-                }
-                
-            }
-            .scrollContentBackground(.hidden)
-            .alert(alertMessage, isPresented: $showingAlert) {
-                Button("OK", role: .cancel) { }
-            }
-            
                 Button {
                     viewModel.submit(firstName: firstName,
                                      lastName: lastName,
@@ -81,6 +93,11 @@ struct OnboardingView: View {
                 .foregroundColor(.white)
                 .cornerRadius(5)
                 .padding()
+            }
+        }
+        .onAppear {
+//            isLoggedIn = UserDefaults.standard.bool(forKey: Constants.isLoggedIn.rawValue) ?? false
+            //No need for this code the @AppStorage does it automatically.
         }
     }
 }
