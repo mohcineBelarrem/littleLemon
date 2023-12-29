@@ -52,6 +52,7 @@ struct OnboardingView: View {
                     TextField("Email", text: $email)
                         .focused($focusedField, equals: .email)
                         .submitLabel(.done)
+                        .autocapitalization(.none)
                         .onSubmit {
                             print("submitting")
                         }

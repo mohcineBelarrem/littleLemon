@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct LittleLemonApp: App {
-    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage(Constants.isLoggedIn.rawValue) var isLoggedIn: Bool = false
     let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {

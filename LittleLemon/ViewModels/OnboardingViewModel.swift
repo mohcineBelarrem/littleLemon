@@ -31,10 +31,10 @@ class OnboardingViewModel: ObservableObject {
         }
         
         if errorMessage.isEmpty {
-            UserDefaults.standard.setValue(firstName, forKey: "firstName")
-            UserDefaults.standard.setValue(lastName, forKey: "lastName")
-            UserDefaults.standard.setValue(email, forKey: "email")
-            UserDefaults.standard.setValue(true, forKey: "isLoggedIn")
+            UserDefaults.standard.setValue(firstName, forKey: Constants.firstName.rawValue)
+            UserDefaults.standard.setValue(lastName, forKey: Constants.lastName.rawValue)
+            UserDefaults.standard.setValue(email, forKey: Constants.email.rawValue)
+            UserDefaults.standard.setValue(true, forKey: Constants.isLoggedIn.rawValue)
         } else {
            completionHandler(errorMessage)
         }

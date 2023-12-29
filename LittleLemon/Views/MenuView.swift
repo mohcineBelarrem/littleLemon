@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var viewModel = MenuViewModel()
+    @ObservedObject private var viewModel = MenuViewModel()
     
     @State private var searchText = ""
     
@@ -32,7 +32,7 @@ struct MenuView: View {
                 
             }
             .searchable(text: $searchText, prompt: "Search...")
-            .scrollContentBackground(.hidden)
+            //.scrollContentBackground(.hidden)
             .task {
                 await viewModel.reload(viewContext)
             }
