@@ -15,7 +15,10 @@ class MenuViewModel: ObservableObject {
     private let stringURL = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json"
     
     var sortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: "title", ascending: true)]
+        return [NSSortDescriptor(key: "title",
+                    ascending: true,
+                     selector:
+                        #selector(NSString.localizedCaseInsensitiveCompare))]
     }
     
     func reload(_ coreDataContext:NSManagedObjectContext) async {

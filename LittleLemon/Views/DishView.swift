@@ -16,7 +16,7 @@ struct DishView: View {
                     .resizable()
                     .frame(width: 100, height: 60)
                     .aspectRatio(contentMode: .fit)
-                    .cornerRadius(20)
+                    .cornerRadius(10)
             } placeholder: {
                 Image("placeHolder")
                     .resizable()
