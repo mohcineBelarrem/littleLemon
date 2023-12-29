@@ -11,21 +11,31 @@ struct MenuView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var viewModel = MenuViewModel()
     
+    @State private var searchText = ""
+    
     var body: some View {
-        NavigationView {
-            FetchedObjects(predicate: viewModel.predicate,
-                           sortDescriptors: viewModel.sortDescriptors) { (dishes : [Dish]) in
-                
-                List {
-                    ForEach(dishes) { dish in
-                        Text(dish.title ?? "")
+        VStack() {
+            Text("Little Lemon")
+            Text("Chicago")
+            Text("It's a restaurant ach bghiti")
+            
+            NavigationView {
+                FetchedObjects(predicate: viewModel.buildPredicate(with: searchText),
+                               sortDescriptors: viewModel.sortDescriptors) { (dishes : [Dish]) in
+                    
+                    List {
+                        ForEach(dishes) { dish in
+                            Text(dish.title ?? "")
+                        }
                     }
                 }
+                
             }
-            
-        }
-        .task {
-           await viewModel.reload(viewContext)
+            .searchable(text: $searchText, prompt: "Search...")
+            .scrollContentBackground(.hidden)
+            .task {
+                await viewModel.reload(viewContext)
+            }
         }
     }
 }

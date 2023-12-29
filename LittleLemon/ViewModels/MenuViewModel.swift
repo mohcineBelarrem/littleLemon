@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import CoreData
 
 @MainActor
@@ -13,16 +14,10 @@ class MenuViewModel: ObservableObject {
     
     private let stringURL = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json"
     
-    @Published private var menuItems = [MenuItem]()
-    
-    var predicate: NSPredicate {
-        return NSPredicate(value: true)
-    }
-    
     var sortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: "title", ascending: true)]
     }
-        
+    
     func reload(_ coreDataContext:NSManagedObjectContext) async {
         //TODO: Implement fetchdata if needed
         guard let url = URL(string: stringURL) else {
@@ -33,15 +28,18 @@ class MenuViewModel: ObservableObject {
         do {
             let (data, _) = try await urlSession.data(from: url)
             let fullMenu = try JSONDecoder().decode(MenuList.self, from: data)
-            menuItems = fullMenu.items
             
             // populate Core Data
             Dish.deleteAll(coreDataContext)
-            Dish.createDishesFrom(menuItems:menuItems, coreDataContext)
+            Dish.createDishesFrom(menuItems:fullMenu.items, coreDataContext)
         }
         catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func buildPredicate(with searchText: String) -> NSPredicate {
+        return searchText.isEmpty ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
     }
 }
 
