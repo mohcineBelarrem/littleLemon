@@ -18,6 +18,8 @@ extension Dish {
 
     @NSManaged public var title: String?
     @NSManaged public var image: String?
+    @NSManaged public var category: String?
+    @NSManaged public var summary: String?
     @NSManaged public var price: Float
 
     private static func request() -> NSFetchRequest<NSFetchRequestResult> {
@@ -115,7 +117,8 @@ extension Dish {
             if !exist {
                 let newDish = Dish(context: context)
                 newDish.title = menuItem.title
-                //newDish.description = menuItem.description
+                newDish.summary = menuItem.summary
+                newDish.category = menuItem.category
                 newDish.image = menuItem.image
                 if let price = Float(menuItem.price) {
                     newDish.price = price

@@ -31,6 +31,9 @@ struct DishView: View {
             VStack(alignment: .leading) {
                 Text(dish.title ?? "")
                     .font(.karlaRegular(20))
+                Text(dish.summary ?? "")
+                    .font(.karlaRegular(13))
+                    .lineLimit(2, reservesSpace: true)
                 Text(String(format: "$%.2f", dish.price))
                     .font(.karlaRegular(16))
                     .foregroundColor(.primaryColor)

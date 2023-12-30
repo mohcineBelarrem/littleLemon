@@ -41,8 +41,10 @@ class MenuViewModel: ObservableObject {
         }
     }
     
-    func buildPredicate(with searchText: String) -> NSPredicate {
-        return searchText.isEmpty ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+    func buildPredicate(with searchText: String, and category: String) -> NSPredicate {
+        let searchPredicate = searchText.isEmpty ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+        let categoryPredicate = category.isEmpty ? NSPredicate(value: true) : NSPredicate(format: "category == %@", category)
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [searchPredicate, categoryPredicate])
     }
 }
 
