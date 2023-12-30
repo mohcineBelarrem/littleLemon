@@ -26,10 +26,10 @@ struct CategoryView: View {
         } label: {
             Text(category.capitalized)
         }
-        .font(.callout)
+        .font(.caption)
         .fontWeight(.heavy)
         .foregroundColor(textColor)
-        .padding()
+        .padding(10)
         .background(backgroundColor)
         .cornerRadius(20)
        
