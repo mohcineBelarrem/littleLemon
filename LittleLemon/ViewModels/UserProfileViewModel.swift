@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserProfileViewModel: ObservableObject {
+class UserProfileViewModel: OnboardingViewModel {
     
     var firstName: String {
         return UserDefaults.standard.string(forKey: Constants.firstName.rawValue) ?? ""

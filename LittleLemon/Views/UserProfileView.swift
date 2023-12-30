@@ -8,42 +8,117 @@
 import SwiftUI
 
 struct UserProfileView: View {
-    @ObservedObject private var viewModel = UserProfileViewModel()
+    @ObservedObject private var viewModel: UserProfileViewModel
     @Environment(\.presentationMode) var presentation
+    
+    @State var firstName: String
+    @State var lastName: String
+    @State var email: String
+    
+    @FocusState private var focusedField: Field?
+    
+    @State private var showingAlert = false
+    @State private var alertMessage = ""
+    
+    init() {
+        
+        let userProfileViewModel = UserProfileViewModel()
+        _viewModel = .init(initialValue: userProfileViewModel)
+        _firstName = .init(initialValue: userProfileViewModel.firstName)
+        _lastName = .init(initialValue: userProfileViewModel.lastName)
+        _email = .init(initialValue: userProfileViewModel.email)
+    }
+    
+    
     var body: some View {
         NavigationStack {
             List {
                 
                 Section(header: Text("First name")) {
-                    Text(viewModel.firstName)
+                    TextField("First name", text: $firstName)
+                        .focused($focusedField, equals: .firstName)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .lastName
+                        }
                 }
                 
                 Section(header: Text("Last name")) {
-                    Text(viewModel.lastName)
+                    TextField("Last name", text: $lastName)
+                        .focused($focusedField, equals: .lastName)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .email
+                        }
                 }
                 
                 Section(header: Text("Email")) {
-                    Text(viewModel.email)
+                    TextField("Email", text: $email)
+                        .focused($focusedField, equals: .email)
+                        .submitLabel(.done)
+                        .autocapitalization(.none)
+                        .onSubmit {
+                            print("submitting")
+                        }
                 }
                 
                 Section {
                     
                 } footer: {
-                    HStack(alignment: .center) {
-                        Spacer()
-                        Button {
-                            viewModel.logout() {
-                                self.presentation.wrappedValue.dismiss()
+                    VStack(spacing: 40) {
+                        HStack(alignment: .center) {
+                            Button {
+                                viewModel.logout() {
+                                    self.presentation.wrappedValue.dismiss()
+                                }
+                            } label: {
+                                Text("Log out")
+                                    .font(.karlaBold(15))
                             }
-                        } label: {
-                            Text("Log out")
-                                .font(.markaziMedium(25))
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity, minHeight: 40)
+                            .background(Color.primaryTextColor)
+                            .cornerRadius(5)
                         }
-                        .foregroundColor(.red)
-                        Spacer()
-                            .background(Color.red)
+                        
+                        HStack(spacing: 15) {
+                            Button {
+                                firstName = viewModel.firstName
+                                lastName = viewModel.lastName
+                                email = viewModel.email
+                            } label: {
+                                Text("Discard Changes")
+                            }
+                            .padding(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.primaryColor, lineWidth: 1)
+                            )
+                            .foregroundColor(.primaryColor)
+                            
+                            Button {
+                                
+                                viewModel.submit(firstName: firstName,
+                                                 lastName: lastName,
+                                                 email: email) { errorMessage in
+                                    alertMessage = errorMessage
+                                    showingAlert = true
+                                }
+                                
+                            } label: {
+                                Text("Save Changes")
+                            }
+                            .padding(10)
+                            .background(Color.primaryColor)
+                            .foregroundColor(.white)
+                            
+                        }
+                        .font(.karlaBold(15))
                     }
                 }
+            }
+            .alert(alertMessage, isPresented: $showingAlert) {
+                Button("OK", role: .cancel) { }
             }
             .formStyle(.grouped)
             .navigationTitle("Profile")
