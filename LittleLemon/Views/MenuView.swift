@@ -20,28 +20,7 @@ struct MenuView: View {
             Color.primaryColor
                 .ignoresSafeArea(.all)
             VStack(alignment: .leading, spacing: 5) {
-                Text("Little Lemon")
-                    .font(.markaziSemiBold(50))
-                    .padding(.leading)
-                    .foregroundColor(.primaryTextColor)
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading) {
-                        Text("Chicago")
-                            .font(.markaziSemiBold(35))
-                            .padding(.top, -15)
-                        Text("We are a family owned Mediterranean restaurant, focused on traditional receipes with a modern twist.")
-                            .font(.karlaMedium(18))
-                        
-                    }
-                    .foregroundColor(.lightGray)
-                    Image("heroImage")
-                        .resizable()
-                        .aspectRatio(1.0, contentMode: .fit)
-                        .frame(width: 125)
-                        .cornerRadius(20)
-                }
-                .padding([.leading,.trailing], 10)
-                
+               HeaderView()
                 
                 NavigationView {
                     
@@ -75,14 +54,8 @@ struct MenuView: View {
                                 DishView(dish: dish)
                             }
                         }
-                        //.padding(.top, 10)
                         .background(Color.primaryColor)
                         .scrollContentBackground(.hidden)
-//                        .searchable(text: $searchText, prompt: "Search...")
-//                        .onAppear {
-//                            UISearchBar.appearance().tintColor = .red
-//                            UISearchBar.appearance().searchTextField.backgroundColor = .blue
-//                        }
                     }
                 }
                 .task {

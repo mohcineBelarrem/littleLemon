@@ -31,68 +31,75 @@ struct OnboardingView: View {
     
     var body: some View {
         NavigationView() {
-            VStack() {
-                
-                NavigationLink(isActive: $isLoggedIn) {
-                    HomeView()
-                        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-                } label: {
-                    EmptyView()
-                }
-
-                Form {
-                    Section() {
-                        TextField("First name", text: $firstName)
-                            .focused($focusedField, equals: .firstName)
-                            .submitLabel(.next)
-                            .onSubmit {
-                                focusedField = .lastName
-                            }
+            ZStack() {
+                Color.primaryColor
+                    .ignoresSafeArea(.all)
+                VStack(alignment: .leading) {
+                    
+                    HeaderView()
+                        .padding()
+                    
+                    NavigationLink(isActive: $isLoggedIn) {
+                        HomeView()
+                            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                    } label: {
+                        EmptyView()
                     }
                     
-                    Section() {
-                        TextField("Last name", text: $lastName)
-                            .focused($focusedField, equals: .lastName)
-                            .submitLabel(.next)
-                            .onSubmit {
-                                focusedField = .email
-                            }
+                    Form {
+                        Section() {
+                            TextField("First name", text: $firstName)
+                                .focused($focusedField, equals: .firstName)
+                                .submitLabel(.next)
+                                .onSubmit {
+                                    focusedField = .lastName
+                                }
+                        }
+                        
+                        Section() {
+                            TextField("Last name", text: $lastName)
+                                .focused($focusedField, equals: .lastName)
+                                .submitLabel(.next)
+                                .onSubmit {
+                                    focusedField = .email
+                                }
+                        }
+                        
+                        
+                        Section() {
+                            TextField("Email", text: $email)
+                                .focused($focusedField, equals: .email)
+                                .submitLabel(.done)
+                                .autocapitalization(.none)
+                                .onSubmit {
+                                    print("submitting")
+                                }
+                        }
+                        
+                    }
+                    .scrollContentBackground(.hidden)
+                    .alert(alertMessage, isPresented: $showingAlert) {
+                        Button("OK", role: .cancel) { }
                     }
                     
-                    
-                    Section() {
-                        TextField("Email", text: $email)
-                            .focused($focusedField, equals: .email)
-                            .submitLabel(.done)
-                            .autocapitalization(.none)
-                            .onSubmit {
-                                print("submitting")
-                            }
+                    Button {
+                        viewModel.submit(firstName: firstName,
+                                         lastName: lastName,
+                                         email: email) { errorMessage in
+                            alertMessage = errorMessage
+                            showingAlert = true
+                        }
+                        
+                    } label: {
+                        Text("Register")
+                            .frame(maxWidth: .infinity, minHeight: 50)
+                            .background(Color.primaryTextColor)
                     }
-                    
+                    .font(.karlaBold(20))
+                    .foregroundColor(.primaryColor)
+                    .cornerRadius(5)
+                    .padding()
                 }
-                .scrollContentBackground(.hidden)
-                .alert(alertMessage, isPresented: $showingAlert) {
-                    Button("OK", role: .cancel) { }
-                }
-                
-                Button {
-                    viewModel.submit(firstName: firstName,
-                                     lastName: lastName,
-                                     email: email) { errorMessage in
-                        alertMessage = errorMessage
-                        showingAlert = true
-                    }
-                    
-                } label: {
-                    Text("Register")
-                        .frame(maxWidth: .infinity, minHeight: 50)
-                        .background(Color.primaryColor)
-                }
-                .font(.custom("MarkaziText-Regular", size: 30))
-                .foregroundColor(.white)
-                .cornerRadius(5)
-                .padding()
             }
         }
         .onAppear {
