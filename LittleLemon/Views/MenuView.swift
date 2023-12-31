@@ -19,10 +19,11 @@ struct MenuView: View {
         ZStack() {
             Color.primaryColor
                 .ignoresSafeArea(.all)
-            VStack(alignment: .leading, spacing: 5) {
-               HeaderView()
-                
-                NavigationView {
+            
+            NavigationView {
+                VStack(alignment: .leading, spacing: -5) {
+                    HeaderView()
+                        .padding(-2)
                     
                     FetchedObjects(predicate: viewModel.buildPredicate(with: searchText, and: selectedCategory),
                                    sortDescriptors: viewModel.sortDescriptors) { (dishes : [Dish]) in
@@ -51,7 +52,12 @@ struct MenuView: View {
                                 }
                             }
                             ForEach(dishes) { dish in
-                                DishView(dish: dish)
+                                
+                                NavigationLink {
+                                    MenuItemDetailView(dish: dish)
+                                } label: {
+                                    DishView(dish: dish)
+                                }
                             }
                         }
                         .background(Color.primaryColor)
